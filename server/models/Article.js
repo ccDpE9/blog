@@ -3,36 +3,29 @@ const mongoose = require('mongoose')
 // Schema interface allows to define fields and validation req
 // Schemas are "compiled" into models using mongoose.model()
 
-let ArticleSchema = new mongoose.Schema(
-  {
-    title: {
-      type: String,
-      maxlength: 255,
-      required: True
-    }
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: True
-    },
-    timestamp: { 
-      type: Date,
-      default: Date.now()
-    },
-    description: {
-      type: String,
-      required: True
-    },
-    text: {
-      type: String,
-      required: True
-    }
+let ArticleSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    maxlength: 255,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  text: {
+    type: String,
+    required: true
   }
-);
-
-ArticleSchema.methods.addAuthor = function (author_id) {
-  this.author = author_id
-  return this.save()
-}
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  timestamp: { 
+    type: Date,
+    default: Date.now()
+  },
+});
 
 module.exports = mongoose.model('Article', ArticleSchema)
