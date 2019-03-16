@@ -23,16 +23,36 @@ describe('Contact component form', () => {
     expect(wrapped.find('.contact-form')).to.have.descendant('input');
   });
 
+  // --- INPUT --- //
+
   it('has a email input element', () => {
     expect(wrapped.find('input').length).toEqual(1);
   });
+
+  it('user can type in a input area', () => {
+    wrapped.find('input').simulate('change', {
+      target: { value: 'test@example.com' };
+    });
+  });
+
+
+  // --- TEXTAREA --- //
 
   it('has a text area and a button', () => {
     expect(wrapped.find('textarea').length).toEqual(1);
     expect(wrapped.find('button').length).toEqual(1);
   });
 
-  it('simulates click eventes', () => {
+  it('user can type in a text area', () => {
+    wrapped.find('textarea').simulate('change', {
+      target: { value: 'Some text for testing purpose.' }
+    });
+  });
+
+
+  // --- REACT --- //
+  
+  it('simulates click events', () => {
     const onButtonClick = sinon.spy();
     wrapped.find('.submit').simulate('click');
     expect(onButtonClick).to.have.property('callCount', 1);
