@@ -7,7 +7,7 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "history": "^4.7.2",
-    "jest": "^24.5.0",
+    "mocha": "^6.0.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-router": "^4.3.1",
@@ -30,6 +30,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "jsonwebtoken": "^8.4.0",
     "passport": "^0.4.0",
     "react-redux": "^6.0.1",
