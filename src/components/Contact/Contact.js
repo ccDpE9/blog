@@ -9,10 +9,36 @@ class Contact extends Component {
     super(props);
 
     this.state = {
+      email: '',
+      msg: '',
+      input: {
+        email: '',
+        msg: ''
+      },
+      errors: {
+        email: '',
+        msg: ''
+      }
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.validate = this.validate.bind(this);
+  }
+
+  validate = (fieldName, value) => {
+    switch(filedName) {
+      case 'email':
+        let emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        errors.email = emailValid ? '' : ' is invalid';
+        break;
+      case 'msg':
+        msgValid = value.length >= 10;
+        errors.msg = msgValid ? '' : ' msg should before more than 10 characters long.';
+        break;
+      default:
+        break;
+    }
   }
 
   handleChange(e) {
@@ -25,6 +51,8 @@ class Contact extends Component {
     this.setState({
       [name]: value
     })
+
+    this.validate(name, value);
   }
 
   handleSubmit(e) {
@@ -44,17 +72,22 @@ class Contact extends Component {
             required
           />
           <textarea
+            name="msg"
             rows="5"
             placeholder="Message..."
             name="content"
             required
           />
-          <button type="submit">Send</button>
+          <button 
+            type="submit"
+            disabled={this.errors.email || this.errors.msg }}
+          >Send
+          </button>
         </form>
       </section>
     )
   }
-  
+
 }
 
 export default Contact;
