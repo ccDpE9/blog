@@ -23,10 +23,12 @@ describe('Contact component form', () => {
     expect(wrapped.find('.contact-form')).to.have.descendant('input');
   });
 
-  // --- INPUT --- //
-
-  it('has a email input element', () => {
+  // --- FORM
+  
+  it('has a email, textarea and button elements', () => {
     expect(wrapped.find('input').length).toEqual(1);
+    expect(wrapped.find('textarea').length).toEqual(1);
+    expect(wrapped.find('button').length).toEqual(1);
   });
 
   it('user can type in a input area', () => {
@@ -35,22 +37,32 @@ describe('Contact component form', () => {
     });
   });
 
-
-  // --- TEXTAREA --- //
-
-  it('has a text area and a button', () => {
-    expect(wrapped.find('textarea').length).toEqual(1);
-    expect(wrapped.find('button').length).toEqual(1);
-  });
-
   it('user can type in a text area', () => {
     wrapped.find('textarea').simulate('change', {
       target: { value: 'Some text for testing purpose.' }
     });
   });
 
+  it('submiting a form clears input and textarea fields', () => {
+    // @TODO
+  });
 
-  // --- REACT --- //
+
+  // --- @TODO: VALIDATION
+
+  it('invalid email address disables submit button and returns a proper error to the user', () => {
+  });
+
+  it('empty email field disables submit button and returns a proper error to the user', () => {
+  });
+
+  it('empty message field disables submit button and returns a propr error to the user', () => {
+  });
+
+
+  // --- @TODO: RECAPTCHA
+
+  // --- REACT 
   
   it('simulates click events', () => {
     const onButtonClick = sinon.spy();
