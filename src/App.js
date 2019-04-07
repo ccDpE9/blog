@@ -1,26 +1,19 @@
-import { Component } from 'react';
-import axios from 'axios';
+import React from "react";
 
-import Header from './Header';
-import Articles from './Articles';
-import Contact from './Contact';
-import Footer from './Footer';
+import Navbar from "./components/Navbar";
+import Articles from "./components/Articles";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="container">
-        <main>
-          <Header />
-          <Articles />
-          <Contact />
-        </main>
-        <footer>
-          <Footer />
-        </footer>
-      </div>
-    )
-  }
-}
+const App = () => {
+  return (
+    <div className="container">
+      <Navbar />
+      <Articles />
+      <Contact />
+      <Footer />
+    </div>
+  );
+};
 
 export default App;
