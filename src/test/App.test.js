@@ -1,11 +1,12 @@
-import React from "react";
+"use strict";
+
 import { configure, shallow, render } from "enzyme";
 import chai, { expect } from "chai";
 import App from "../App";
-import chaiEnzyme from "chai-enzyme";
 
 describe("App component", () => {
-  before(() => {
+
+  beforeEach(() => {
     const wrapper = shallow(<App />);
   });
 
@@ -19,6 +20,4 @@ describe("App component", () => {
     expect(wrapper).to.contain(<Footer />);
   });
 
-  describe("h1 loads correctly", async () => {
-    let browser = 
 });

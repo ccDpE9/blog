@@ -8,31 +8,34 @@ class Articles extends Component {
       loading: false,
       articles: []
     };
+
+
+    this.renderArticles = this.renderArticles.bind(this);
   }
 
-  async componentWillMount() {
-    this.fetchArticles();
+  componentWillMount() {
+    this.setState({
+      articles: props.articles
+    });
   }
 
-  fetchArticles() {
-    this.setState({ loading: true });
-
-    /*
-    await API.get('https://api.thedogapi.com/v1/images/search?size=thumbnail&limit=10', path)
-      .then(res => {
-        this.setState({
-          articles: res.data
-        });
-      });
-      */
-  }
+  renderArticles() {
+    this.state.articles.forEach(article => {
+      return (
+        <li className="articles-list__item">
+          <span className="article-list__title"><a href="#">article.title</a></span>
+          <span className="article-list__timestamp">article.timestamp</span>
+          <span className="article-list__description">article.description</span>
+        </li>
+      )
+    });
+  };
 
   render() {
     return (
       <section className="articles">
         <ul className="articles-list">
-          <li className="articles-list__item">
-          </li>
+          { this.renderArticles() }
         </ul>
       </section>
     )
