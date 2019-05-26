@@ -1,4 +1,10 @@
 import { combineReducers } from "redux";
-import * as reducers from "./articles";
+import * as articleReducers from "./articles";
+import filters as filterReducer from "./filters"; 
 
-export const rootReducer = combineReducers(reducers);
+const rootReducer = combineReducers(
+  articleReducers,
+  filterReducer,
+);
+
+export default rootReducer;
