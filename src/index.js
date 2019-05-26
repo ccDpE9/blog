@@ -1,9 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./App";
+import Root from "./components/Root";
+
+// --- Redux
+import { configureStore } from "./store/index";
+const store = configureStore();
 
 ReactDOM.render(
-  <App />, 
+  <Root store={store} />,
   document.querySelector("body")
 );
