@@ -1,46 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from "react-redux";
 
-class Articles extends Component {
-  constructor(props) {
-    super(props);
+const Articles = () => (
+  <ul className="articles-list">
+    { articles.map(article =>
+      <li className="articles-list__item">
+        <span className="article-list__title"><a href="#">article.title</a></span>
+        <span className="article-list__timestamp">article.timestamp</span>
+        <span className="article-list__description">article.description</span>
+      </li>
+    )}
+  </ul>
+);
 
-    this.state = {
-      loading: false,
-      articles: []
-    };
+const mapStateToProps = state => const { articles } = state;
 
-
-    this.renderArticles = this.renderArticles.bind(this);
-  }
-
-  componentWillMount() {
-    this.setState({
-      articles: props.articles
-    });
-  }
-
-  renderArticles() {
-    this.state.articles.forEach(article => {
-      return (
-        <li className="articles-list__item">
-          <span className="article-list__title"><a href="#">article.title</a></span>
-          <span className="article-list__timestamp">article.timestamp</span>
-          <span className="article-list__description">article.description</span>
-        </li>
-      )
-    });
-  };
-
-  render() {
-    return (
-      <section className="articles">
-        <ul className="articles-list">
-          { this.renderArticles() }
-        </ul>
-      </section>
-    )
-  }
-}
-
-export default Articles;
-
+export default connect(
+  mapStateToProps,
+)(Articles);
