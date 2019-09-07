@@ -1,21 +1,75 @@
-import React from "react";
-import { Link } from "gatsby";
+import React from "react"
+import { Link } from "gatsby"
 
-const LinkLink = props => (
-  <li style={{ display: `inline-block`, marginRight: `1rem` }}>
-    <Link to={props.to}>{props.children}</Link>
-  </li>
-)
+import { rhythm, scale } from "../utils/typography"
 
-export default ({ children }) => (
-  <div style={{ margin: `3rem auto`, maxWidth: 650, padding: `0 1rem` }}>
-    <header style={{ marginBottom: `1.5rem` }}>
-      <Link to="/" style={{ textShadow: `none`, backgroundImage: `none` }}>
-        <h3 style={{ display: `inline` }}>About</h3>
-      </Link>
-      <ul style={{ listStyle: `none`, float: `right` }}>
-        <ListLink to="/">Home</ListLink>
-      </ul>
-    </header>
-  </div>
-)
+class Layout extends React.Component {
+  render() {
+    const { location, title, children } = this.props
+    const rootPath = `${__PATH_PREFIX__}/`
+    let header
+
+    if (location.pathname === rootPath) {
+      header = (
+        <h1
+          style={{
+            ...scale(1.5),
+            marginBottom: rhythm(1.5),
+            marginTop: 0,
+          }}
+        >
+          <Link
+            style={{
+              boxShadow: `none`,
+              textDecoration: `none`,
+              color: `inherit`,
+            }}
+            to={`/`}
+          >
+            {title}
+          </Link>
+        </h1>
+      )
+    } else {
+      header = (
+        <h3
+          style={{
+            fontFamily: `Montserrat, sans-serif`,
+            marginTop: 0,
+          }}
+        >
+          <Link
+            style={{
+              boxShadow: `none`,
+              textDecoration: `none`,
+              color: `inherit`,
+            }}
+            to={`/`}
+          >
+            {title}
+          </Link>
+        </h3>
+      )
+    }
+    return (
+      <div
+        style={{
+          marginLeft: `auto`,
+          marginRight: `auto`,
+          maxWidth: rhythm(24),
+          padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+        }}
+      >
+        <header>{header}</header>
+        <main>{children}</main>
+        <footer>
+          © {new Date().getFullYear()}, Built with
+          {` `}
+          <a href="https://www.gatsbyjs.org">Gatsby</a>
+        </footer>
+      </div>
+    )
+  }
+}
+
+export default Layout
