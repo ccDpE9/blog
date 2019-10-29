@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 
 export default () => (
-  <header>
+  <nav>
     <Link to="/">Home</Link>
-  </header>
+  </nav>
 )
