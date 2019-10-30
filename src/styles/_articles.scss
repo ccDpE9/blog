@@ -1,0 +1,17 @@
+$break-small: 320px;
+$break-large: 1024px;
+
+@mixin respond-to($media) {
+  @if $media == medium-screens {
+    @media screen and (max-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+
+  @if @media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
+.articles {
+  @include respond-to(medium-screens) { width: 125px }
+  @include respond-to(wide-screens) { float: none }
+}
