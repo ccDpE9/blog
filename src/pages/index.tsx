@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
@@ -15,15 +15,11 @@ const App: React.SFC<IndexPageProps> = ({ data }) => {
     <Layout>
       <h4>{ data.allMarkdownRemark.totalCount }</h4>
       <section className="articles">
-	{articles.map(({ node }) => (
+	{articles.map(({ node }, index) => (
 	<div id={ node.id }>
-	  <p>One article</p>
 	  <Link to={node.fields.slug}>
-	    <h3>
-	      { node.frontmatter.title }
-	      <span>- { node.frontmatter.date }</span>
-	    </h3>
-	    <p>{ node.exceprt }</p>
+	    <h3>{ index + 1}. { node.frontmatter.title }</h3>
+	    <span>{node.frontmatter.date }</span>
 	  </Link>
 	</div>
 	))}
@@ -44,7 +40,7 @@ export const query = graphql`
 	  frontmatter {
 	    title
 	    description
-	    date(formatString: "DD MMMM, YYYY")
+	    date(formatString: "DD-MM-YYYY")
 	  }
 	  fields {
 	    slug
