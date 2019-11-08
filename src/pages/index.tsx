@@ -9,13 +9,16 @@ interface IndexPageProps {
 }
 
 const App: React.SFC<IndexPageProps> = ({ data }) => {
-  const articles = data.allMarkdownRemark.edges
+  const { edges, totalCount } = data.allMarkdownRemark
+  const tagHeader = `Total post${
+    totalCount === 1 ? "" : "s"
+  } number: ${totalCount}"`
 
   return (
     <Layout>
-      <h4>{ data.allMarkdownRemark.totalCount }</h4>
       <section className="articles">
-	{articles.map(({ node }, index) => (
+	<h4>{ tagHeader }</h4>
+	{edges.map(({ node }, index) => (
 	<div classname="articles__article" id={ node.id }>
 	  <Link to={node.fields.slug}>
 	    <h3 className="articles__title">{ index + 1}. { node.frontmatter.title }</h3>
@@ -23,7 +26,9 @@ const App: React.SFC<IndexPageProps> = ({ data }) => {
 	    {node.frontmatter.tags ? (
 	      <div className="articles__tags">
 		{node.frontmatter.tags.map(tag => (
-		<span className="articles__tag">{tag}</span>
+		<Link to={`/tags/${tag}`}>
+		  <span className="articles__tag">{tag}</span>
+		</Link>
 		))}
 	      </div>
 	    ) : null }
