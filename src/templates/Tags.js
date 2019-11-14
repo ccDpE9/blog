@@ -11,7 +11,7 @@ const Tags = ({ pageContext, data }) => {
   const { currentPage, numPages } = pageContext
   const isFirst = currentPage === 1
   const isLast = currentPage - 1 === numPages
-  const prevPage = currentPage - 1 === 1 ? `/tags/${tag}` : `/tags/${tag}/-${(currentPage - 1).toString()}`
+  const prevPage = currentPage - 1 === 1 ? `/tags/${tag}` : `/tags/${tag}-${(currentPage - 1).toString()}`
   const nextPage = `/tags/${tag}-${(currentPage + 1).toString()}`
 
   return (
