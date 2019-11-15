@@ -3,8 +3,16 @@ import { Link } from "gatsby"
 
 export default () => (
   <nav>
-    <Link to="#">Portfolio</Link>
-    <Link to="/">Home</Link>
-    <Link to="/">Contact</Link>
+    <ul>
+      <li>
+        <Link to="#">Portfolio</Link>
+      </li>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/">Contact</Link>
+      </li>
+    </ul>
   </nav>
 )

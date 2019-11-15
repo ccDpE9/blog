@@ -1,5 +1,9 @@
 // --- Index page articles list
 .articles {
+  &__header {
+    margin: 20px 0;
+  }
+
   &__article {
     margin: 10px 0;
   }

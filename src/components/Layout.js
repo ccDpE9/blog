@@ -1,15 +1,16 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import { Link } from "gatsby"
 
 import Navigation from "./Navigation"
-// import Footer from "./footer"
+import Footer from "./Footer"
+
+import "../styles/global.scss"
 
 const Layout = ({ children }) => {
   return (
-    <div className="container" style={{ margin: `3rem auto`, maxWidth: 650, padding: `0 1rem` }}>
+    <div className="container">
       <Navigation />
       <main>{children}</main>
+      <Footer />
     </div>
   )
 }

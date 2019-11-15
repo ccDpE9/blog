@@ -1,18 +1,22 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 
 export default ({ data }) => {
   const article = data.markdownRemark
 
   return (
     <Layout>
-      <div>
-        <h1>{ article.frontmatter.title }</h1>
-        <span>{ article.frontmatter.date }</span>
-        <p>{ article.frontmatter.description }</p>
-        <div dangerouslySetInnerHTML={{ __html: article.html }} />
-      </div>
+      <article className="article">
+        <header className="article__header">
+          <h1 className="article__title">{ article.frontmatter.title }</h1>
+          <time className="article__date">
+            { article.frontmatter.date }
+          </time>
+          <p className="article__description">{ article.frontmatter.description }</p>
+        </header>
+        <div className="article__content" dangerouslySetInnerHTML={{ __html: article.html }} />
+      </article>
     </Layout>
   )
 }
@@ -24,7 +28,7 @@ export const query = graphql`
       frontmatter {
         title
         description
-        date
+        date(formatString: "DD MMMM, YYYY") 
       }
     }
   }
