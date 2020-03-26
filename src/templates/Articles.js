@@ -22,15 +22,6 @@ const App = ({ pageContext, data }) => {
             <Link to={node.fields.slug}>
               <h3 className="articles__title">{ index + 1}. { node.frontmatter.title }</h3>
               <span className="articles__date">{ node.frontmatter.date } | </span>
-              {node.frontmatter.tags ? (
-                <div className="articles__tags">
-                  {node.frontmatter.tags.map(tag => (
-                    <Link to={`/tags/${tag}`}>
-                      <span className="articles__tag">{tag}</span>
-                    </Link>
-                  ))}
-                </div>
-              ) : null }
             </Link>
           </div>
         ))}
@@ -71,7 +62,6 @@ export const query = graphql`
             title
             description
             date(formatString: "DD-MM-YYYY")
-            tags
           }
           fields {
             slug

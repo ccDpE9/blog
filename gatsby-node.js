@@ -63,44 +63,4 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     })
   })
-
-  // Create a page for each tag
-  let tags = [];
-  articles.forEach(({ node }) => {
-    node.frontmatter.tags.forEach(tag => {
-      tags.includes(tag) ? null : tags.push(tag);
-    })
-  })
-
-  let counts = {}
-  articles.forEach(article => {
-    article.node.frontmatter.tags.forEach(tag => {
-      if (!counts.hasOwnProperty(tag)) {
-        counts[tag] = {}
-        counts[tag].numPosts = 1
-      } else {
-        counts[tag].numPosts += 1
-      }
-    })
-  })
-  for (let [tag] of Object.entries(counts)) {
-    counts[tag].numPages = Math.ceil(counts[tag].numPosts / postsPerPage)
-  }
-
-  tags.forEach(tag => {
-    Array.from({ length: counts[tag].numPages }).forEach((_, i) => {
-      createPage({
-        path: `/tags/${tag}/`,
-        path: i === 0 ? `/tags/${tag}` : `/tags/${tag}-${i+1}`,
-        component: path.resolve("./src/templates/Tags.js"),
-        context: {
-          tag,
-          limit: postsPerPage,
-          skip: i * postsPerPage,
-          numPages: counts[tag].numPages,
-          currentPage: i + 1,
-        }
-      })
-    })
-  })
 }
